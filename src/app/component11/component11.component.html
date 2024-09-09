@@ -1,0 +1,70 @@
+<form [formGroup]="formulario">
+
+    @if (formulario.get("nome").hasError("required") && formulario.get('nome').touched) {
+    <p class="alert alert-warning"> O campo nome é obrigatório</p>
+    }
+    @if (formulario.get("nome").hasError('minlength') && formulario.get('nome').touched) {
+    <p class="alert alert-warning"> O campo nome deve conter no minimo 3 caracteres</p>
+    }
+    <input type="text" placeholder="nome" class="form-control" formControlName="nome">
+
+    @if (formulario.get("idade").hasError("required") && formulario.get('idade').touched) {
+    <p class="alert alert-warning"> O campo idade não pode ser nulo</p>
+    }
+    @if (formulario.get("idade").hasError("min") && formulario.get('idade').touched) {
+    <p class="alert alert-warning"> A idade não pode ser inferior a 0</p>
+    }
+    @if (formulario.get("idade").hasError("max") && formulario.get('idade').touched) {
+    <p class="alert alert-warning"> A idade não pode ser superior a 120</p>
+    }
+    <input type="number" placeholder="idade" class="form-control" formControlName="idade">
+
+    @if (formulario.get("cidade").hasError("required") && formulario.get('cidade').touched) {
+    <p class="alert alert-warning"> O campo cidade é obrigatório</p>
+    }
+    @if (formulario.get("cidade").hasError('minlength') && formulario.get('cidade').touched) {
+    <p class="alert alert-warning"> O campo cidade deve conter no minimo 3 caracteres</p>
+    }
+    <input type="text" placeholder="cidade" class="form-control" formControlName="cidade">
+
+
+    @if (opcaoCadastrar) {
+    <input type="button" (click)="cadastrar()" value="Cadastrar" class="btn btn-primary"
+        [disabled]="formulario.invalid">
+
+    }
+    @else{
+    <input type="button" (click)="alterar()" value="Alterar" class="btn btn-primary" [disabled]="formulario.invalid">
+    <input type="button" (click)="remover()" value="Remoção" class="btn btn-primary">
+    <input type="button" (click)="cancelar()" value="Cancelamento" class="btn btn-primary">
+
+    }
+
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>#</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Cidade</th>
+            <th>Selecionar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of vetor; track $index) {
+
+        <tr>
+            <th>{{$index}}</th>
+            <th>{{item.nome}}</th>
+            <th>{{item.idade}}</th>
+            <th>{{item.cidade}}</th>
+            <th>
+                <input type="button" value="selecionar" class="btn btn-primary" (click)="selecionar($index)">
+            </th>
+        </tr>
+        }
+    </tbody>
+</table>

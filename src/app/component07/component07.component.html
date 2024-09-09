@@ -1,0 +1,18 @@
+<h1 [ngStyle]="{'color': cor ? 'green': 'red'}"> aprendendo a diretiva ngstily</h1>
+
+
+<h1>----------------------------------------------------------</h1>
+<!-- aplicando css diferentes com base numa condição -->
+<ul>
+    <li *ngFor="let l of list" [ngStyle]="{'color': l== 'aprovado' ? 'green' : 'red'}">
+    {{l}}
+    </li>
+</ul>
+
+<h1>----------------------------------------------------------</h1>
+<!-- executando classes css diferentes com base numa condição -->
+<ul>
+    <li *ngFor="let l of list" [ngClass]="l== 'aprovado' ? 'fazul' : 'fverme'">
+    {{l}}
+    </li>
+</ul>
